@@ -14,6 +14,12 @@ function update_quality() {
 
 function spendADay(item) {
 
+    if (isSulfuras(item)) {
+
+    } else {
+        decrementSellIn(item);
+    }
+
     if (isAgedBrie(item)) {
         incrementQuality(item);
     } else if (isBackStage(item)) {
@@ -25,19 +31,14 @@ function spendADay(item) {
     }
 
     if (isBackStage(item)) {
-        if (item.sell_in < 11) {
+        if (item.sell_in < 10) {
             incrementQuality(item);
         }
-        if (item.sell_in < 6) {
+        if (item.sell_in < 5) {
             incrementQuality(item);
         }
     }
 
-    if (isSulfuras(item)) {
-
-    } else {
-        decrementSellIn(item);
-    }
 
     if (isExpired(item)) {
         if (isAgedBrie(item)) {
