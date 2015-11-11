@@ -56,6 +56,27 @@ describe("Gilded Rose Specs", function() {
         expect(items[0].quality).toBe(4);
     });
 
+    it("must increase quality by 1 when Backstage Pass is near to expire (11 days)", function() {
+        items=new ItemsBuilder()
+            .addBackstagePass()
+            .withSellIn(11)
+            .withQuality(2)
+            .build();
+        update_quality();
+        expect(items[0].quality).toBe(3);
+    });
+
+    it("must increase quality by 2 when Backstage Pass is near to expire (6 days)", function() {
+        items=new ItemsBuilder()
+            .addBackstagePass()
+            .withSellIn(6)
+            .withQuality(2)
+            .build();
+        update_quality();
+        expect(items[0].quality).toBe(4);
+    });
+
+
     it("must increase quality by 2 when Backstage Pass if about to expire (<11 days)", function() {
         items=new ItemsBuilder()
             .addBackstagePass()
@@ -64,6 +85,17 @@ describe("Gilded Rose Specs", function() {
             .build();
         update_quality();
         expect(items[0].quality).toBe(4);
+    });
+
+
+    it("must increase quality by 3 when Backstage Pass if about to expire (<6 days)", function() {
+        items=new ItemsBuilder()
+            .addBackstagePass()
+            .withSellIn(5)
+            .withQuality(2)
+            .build();
+        update_quality();
+        expect(items[0].quality).toBe(5);
     });
 
     it("must set quality to 0 when Backstage Pass is expired", function() {
@@ -76,15 +108,6 @@ describe("Gilded Rose Specs", function() {
         expect(items[0].quality).toBe(0);
     });
 
-    it("must increase quality by 3 when Backstage Pass if about to expire (<6 days)", function() {
-        items=new ItemsBuilder()
-            .addBackstagePass()
-            .withSellIn(5)
-            .withQuality(2)
-            .build();
-        update_quality();
-        expect(items[0].quality).toBe(5);
-    });
 
     it("must decrease the quality of a normal item by 2 if is expired", function() {
         items=new ItemsBuilder()
