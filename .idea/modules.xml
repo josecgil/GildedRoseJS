@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/GildedRoseJS.iml" filepath="$PROJECT_DIR$/.idea/GildedRoseJS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../GildedRoseJS2/.idea/GildedRoseJS.iml" filepath="$PROJECT_DIR$/../GildedRoseJS2/.idea/GildedRoseJS.iml" />
     </modules>
   </component>
 </project>
