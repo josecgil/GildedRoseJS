@@ -26,6 +26,8 @@ function spendADay(item) {
         incrementQuality(item);
     } else if (isSulfuras(item)) {
         incrementQuality(item);
+    } else if (isConjured(item)) {
+        decrementQuality(item, 2);
     } else {
         decrementQuality(item);
     }
@@ -39,28 +41,29 @@ function spendADay(item) {
         }
     }
 
-
     if (isExpired(item)) {
         if (isAgedBrie(item)) {
             incrementQuality(item);
         } else if (isBackStage(item)) {
             loseAllQuality(item);
+        } else if (isConjured(item)) {
+            decrementQuality(item, 2);
         } else {
             decrementQuality(item);
         }
     }
 }
 
-
 function incrementQuality(item) {
     if (item.quality >= 50) return;
     item.quality++;
-};
+}
 
-function decrementQuality(item) {
+function decrementQuality(item, delta) {
+    delta=delta || 1;
     if (item.quality <= 0) return;
-    item.quality--;
-};
+    item.quality=item.quality-delta;
+}
 
 function isAgedBrie(item) {
     return item.name == 'Aged Brie';
@@ -72,6 +75,10 @@ function isBackStage(item) {
 
 function isSulfuras(item) {
     return item.name == 'Sulfuras, Hand of Ragnaros';
+}
+
+function isConjured(item) {
+    return item.name == 'Conjured';
 }
 
 function loseAllQuality(item) {

@@ -20,6 +20,11 @@
         return this;
     };
 
+    ItemsBuilder.prototype.addConjured=function() {
+        this._addItem("Conjured");
+        return this;
+    };
+
     ItemsBuilder.prototype.addAgedBrie=function() {
         this._addItem("Aged Brie");
         return this;

@@ -27,24 +27,6 @@ describe("Gilded Rose Specs", function() {
         expect(items[0].sell_in).toBe(1);
     });
 
-    it("must lowers quality by 1 if item is normal", function() {
-        items=new ItemsBuilder()
-            .addNormal()
-            .withQuality(1)
-            .build();
-        update_quality();
-        expect(items[0].quality).toBe(0);
-    });
-
-    it("must lowers quality by 2 when a normal item is expired", function() {
-        items=new ItemsBuilder()
-            .addNormal()
-            .expired()
-            .withQuality(1)
-            .build();
-        update_quality();
-        expect(items[0].quality).toBe(0);
-    });
 
     it("must increase quality by 2 if item is Aged Brie", function() {
         items=new ItemsBuilder()
@@ -109,15 +91,7 @@ describe("Gilded Rose Specs", function() {
     });
 
 
-    it("must decrease the quality of a normal item by 2 if is expired", function() {
-        items=new ItemsBuilder()
-            .addNormal()
-            .withQuality(4)
-            .expired()
-            .build();
-        update_quality();
-        expect(items[0].quality).toBe(2);
-    });
+
 
     it("must increase only by 1 if backstage has quality 49", function() {
         items=new ItemsBuilder()
@@ -129,5 +103,42 @@ describe("Gilded Rose Specs", function() {
         expect(items[0].quality).toBe(50);
     });
 
+    it("must decrease the quality by 1 if item is normal", function() {
+        items=new ItemsBuilder()
+            .addNormal()
+            .withQuality(1)
+            .build();
+        update_quality();
+        expect(items[0].quality).toBe(0);
+    });
+
+    it("must decrease the quality by 2 if is item is normal and expired", function() {
+        items=new ItemsBuilder()
+            .addNormal()
+            .withQuality(4)
+            .expired()
+            .build();
+        update_quality();
+        expect(items[0].quality).toBe(2);
+    });
+
+    it("must decrease the quality by 2 if item is conjured", function() {
+        items=new ItemsBuilder()
+            .addConjured()
+            .withQuality(2)
+            .build();
+        update_quality();
+        expect(items[0].quality).toBe(0);
+    });
+
+    it("must decrease the quality by 4 if is item is conjured and expired", function() {
+        items=new ItemsBuilder()
+            .addConjured()
+            .withQuality(6)
+            .expired()
+            .build();
+        update_quality();
+        expect(items[0].quality).toBe(2);
+    });
 
 });
