@@ -14,9 +14,7 @@ GildedRoseItem.prototype.spendADay=function() {
         this.decrementSellIn();
     }
 
-    if (this.isAgedBrie()) {
-        this.incrementQuality();
-    } else if (this.isBackStage()) {
+    if (this.isBackStage()) {
         this.incrementQuality();
     } else if (this.isSulfuras()) {
         this.incrementQuality();
@@ -34,9 +32,7 @@ GildedRoseItem.prototype.spendADay=function() {
     }
 
     if (this.isExpired()) {
-        if (this.isAgedBrie()) {
-            this.incrementQuality();
-        } else if (this.isBackStage()) {
+        if (this.isBackStage()) {
             this.loseAllQuality();
         } else if (this.isConjured()) {
             this.decrementQuality(2);
@@ -61,10 +57,6 @@ GildedRoseItem.prototype.decrementSellIn=function() {
 
 GildedRoseItem.prototype.toItem=function() {
     return { name:this.name, quality:this.quality, sell_in:this.sell_in };
-};
-
-GildedRoseItem.prototype.isAgedBrie=function() {
-    return this.name == 'Aged Brie';
 };
 
 GildedRoseItem.prototype.isBackStage=function() {

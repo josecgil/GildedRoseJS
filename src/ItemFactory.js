@@ -20,7 +20,7 @@ ItemFactory.prototype.isConjured=function(item) {
 
 ItemFactory.prototype.create=function(item) {
     if (this.isAgedBrie(item)) {
-        return new GildedRoseItem(item);
+        return new AgedBrie(item);
     }
     if (this.isSulfuras(item)) {
         return new GildedRoseItem(item);

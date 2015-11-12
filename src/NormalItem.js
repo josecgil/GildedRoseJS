@@ -24,10 +24,14 @@ NormalItem.prototype.toItem=function() {
     return { name:this.name, quality:this.quality, sell_in:this.sell_in };
 };
 
+NormalItem.prototype.isExpired=function() {
+    return this.sell_in < 0;
+};
+
 NormalItem.prototype.spendADay=function() {
     this.decrementQuality();
     this.decrementSellIn();
-    if (this.sell_in < 0) {
+    if (this.isExpired.call(this)) {
         this.decrementQuality();
     }
 };
