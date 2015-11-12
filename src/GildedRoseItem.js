@@ -22,8 +22,6 @@ GildedRoseItem.prototype.spendADay=function() {
         this.incrementQuality();
     } else if (this.isConjured()) {
         this.decrementQuality(2);
-    } else {
-        this.decrementQuality();
     }
 
     if (this.isBackStage()) {
@@ -42,8 +40,6 @@ GildedRoseItem.prototype.spendADay=function() {
             this.loseAllQuality();
         } else if (this.isConjured()) {
             this.decrementQuality(2);
-        } else {
-            this.decrementQuality();
         }
     }
 };
@@ -57,6 +53,14 @@ GildedRoseItem.prototype.decrementQuality=function(delta) {
     delta=delta || 1;
     if (this.quality <= 0) return;
     this.quality=this.quality-delta;
+};
+
+GildedRoseItem.prototype.decrementSellIn=function() {
+    this.sell_in--;
+};
+
+GildedRoseItem.prototype.toItem=function() {
+    return { name:this.name, quality:this.quality, sell_in:this.sell_in };
 };
 
 GildedRoseItem.prototype.isAgedBrie=function() {
@@ -83,11 +87,5 @@ GildedRoseItem.prototype.isExpired=function() {
     return this.sell_in < 0;
 };
 
-GildedRoseItem.prototype.decrementSellIn=function() {
-    this.sell_in--;
-};
 
-GildedRoseItem.prototype.toItem=function() {
-    return { name:this.name, quality:this.quality, sell_in:this.sell_in };
-};
 

@@ -7,10 +7,11 @@ function Item(name, sell_in, quality) {
 var items = []
 
 function update_quality() {
+    var itemFactory=new ItemFactory();
     for (var i = 0; i < items.length; i++) {
-        var gildedRoseItem = new GildedRoseItem(items[i]);
-        gildedRoseItem.spendADay();
-        items[i]=gildedRoseItem.toItem();
+        var item = itemFactory.create(items[i]);
+        item.spendADay();
+        items[i]=item.toItem();
     }
 }
 
