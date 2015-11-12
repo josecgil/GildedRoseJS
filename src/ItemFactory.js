@@ -29,7 +29,7 @@ ItemFactory.prototype.create=function(item) {
         return new Backstage(item);
     }
     if (this.isConjured(item)) {
-        return new GildedRoseItem(item);
+        return new Conjured(item);
     }
     return new NormalItem(item);
 };
