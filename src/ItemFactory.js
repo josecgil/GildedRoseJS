@@ -23,7 +23,7 @@ ItemFactory.prototype.create=function(item) {
         return new AgedBrie(item);
     }
     if (this.isSulfuras(item)) {
-        return new GildedRoseItem(item);
+        return new Sulfuras(item);
     }
     if (this.isBackStage(item)) {
         return new Backstage(item);
