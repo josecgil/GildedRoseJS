@@ -14,27 +14,14 @@ GildedRoseItem.prototype.spendADay=function() {
         this.decrementSellIn();
     }
 
-    if (this.isBackStage()) {
-        this.incrementQuality();
-    } else if (this.isSulfuras()) {
+    if (this.isSulfuras()) {
         this.incrementQuality();
     } else if (this.isConjured()) {
         this.decrementQuality(2);
     }
 
-    if (this.isBackStage()) {
-        if (this.sell_in < 10) {
-            this.incrementQuality();
-        }
-        if (this.sell_in < 5) {
-            this.incrementQuality();
-        }
-    }
-
     if (this.isExpired()) {
-        if (this.isBackStage()) {
-            this.loseAllQuality();
-        } else if (this.isConjured()) {
+        if (this.isConjured()) {
             this.decrementQuality(2);
         }
     }
@@ -59,20 +46,12 @@ GildedRoseItem.prototype.toItem=function() {
     return { name:this.name, quality:this.quality, sell_in:this.sell_in };
 };
 
-GildedRoseItem.prototype.isBackStage=function() {
-    return this.name == 'Backstage passes to a TAFKAL80ETC concert';
-};
-
 GildedRoseItem.prototype.isSulfuras=function() {
     return this.name == 'Sulfuras, Hand of Ragnaros';
 };
 
 GildedRoseItem.prototype.isConjured=function() {
     return this.name == 'Conjured';
-};
-
-GildedRoseItem.prototype.loseAllQuality=function() {
-    this.quality = 0;
 };
 
 GildedRoseItem.prototype.isExpired=function() {

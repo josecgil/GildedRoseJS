@@ -20,6 +20,10 @@ NormalItem.prototype.decrementSellIn=function() {
     this.sell_in--;
 };
 
+NormalItem.prototype.loseAllQuality=function() {
+    this.quality = 0;
+};
+
 NormalItem.prototype.toItem=function() {
     return { name:this.name, quality:this.quality, sell_in:this.sell_in };
 };
